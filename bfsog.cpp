@@ -1,106 +1,126 @@
 #include<iostream>
-#define max 10
-#define true 1
-#define false 0
 using namespace std;
-class bfsl
+
+class stack
 {
-    typedef struct node1
-    {
-        int vertex;
-        struct node1* next;
-    }node;
-    node *head[max];
-    int queue[max],visited[max],front,rear;
-    public:
-        bfsl();
-        void create();
-        void bfs(int);
+   public:
+      int top;
+      int arr[10];
+      stack()
+      {
+         top=-1;
+      }
+      void push(int data)
+      {
+            arr[++top]=data;
+      }
+      int pop()
+      {
+         int data=arr[top];
+         top--;
+         return data;
+      }
+      int isEmpty()
+      {
+         if(top==-1)
+            return 1;
+         else 
+            return 0;
+      }
 };
-bfsl::bfsl()
-{
-    int v1;
-    for(v1=0;v1<max;v1++)
-        visited[v1]=false;
-    front=rear=-1;
-    for(v1=0;v1<max;v1++)
-        head[v1]=NULL;
-}
-void bfsl::create()
-{
-    int v1,v2;
-    node *news,*first;
-    char ans;
-    do
-    {
-        cout<<"\n Enter edge"<<endl;
-        cin>>v1;
-        cin>>v2;
-        if(v1>=max || v2>=max)
-            cout<<"Invalid edge"<<endl;
-        else
-        {
-        news=new node;
-        if(news==NULL)
-            cout<<"\n insufficient memory"<<endl;
-        news->vertex=v2;
-        news->next=NULL;
-        first=head[v1];
-        if(first==NULL)
-            head[v1]=news;
-        else{
-            while(first->next!=NULL)
-                first=first->next;
-            first->next=news;
-        }
-        
-        news=new node;
-        news->vertex=v1;
-        news->next=NULL;
-        first=head[v2];
-        if(first==NULL)
-            head[v2]=news;
-        else
-        {
-            while(first->next!=NULL)
-                first=first->next;
-            first->next=news;
-        }
-        }
-        cout<<"\n You want to inser more edges: ";
-        cin>>ans;
-        
-    }while(ans=='y');
-}
-void bfsl::bfs(int v1)
-{
-    int i;
-    node *first;
-    queue[++rear]=v1;
-    while(front!=rear)
-    {
-        i=queue[++front];
-        if(visited[i]==false)
-        {
-            cout<<endl<<i<<" ";
-            visited[i]=true;
-        }
-        first=head[i];
-        while(first!=NULL)
-        {
-            if(visited[first->vertex]==false)
-                queue[++rear]=first->vertex;
-                first=first->next;
-        }
-    }
-}
+
 int main()
 {
-    int v;
-    bfsl bs;
-    bs.create();
-    cout<<"\n Enter starting vertex; "<<endl;
-    cin>>v;
-    bs.bfs(v);
-    return 0;
-}
+      int v,ch,u,n;
+      int visited[10];
+      int mat[10][10];
+      stack s;
+      cout<<"\nHow many vertices do you want : ";
+      cin>>n;
+      int i,j;
+      for(int i=0;i<n;i++)
+      {
+         for(int j=0;j<n;j++)
+         {
+            mat[i][j]=0;
+         }
+      }
+      do
+      {
+         cout<<"\nEnter edge in pair : ";
+         cin>>u>>v;
+         mat[u][v]=1;
+         // mat[v][u]=1;
+         cout<<"\nDo you want to enter next pair (enter 1): ";
+         cin>>ch;
+      }while(ch==1);
+    
+      cout<<"\n\nMatrix is : \n";
+      for(int i=0;i<n;i++)
+      {
+         for(int j=0;j<n;j++)
+         {
+            cout<<"\t"<<mat[i][j];
+            
+         }
+        cout<<"\n";
+      }
+    
+      for(int i=0;i<n;i++)
+      {
+         visited[i]=0;
+      }
+      
+      cout<<"\nEnter the starting vertex : ";
+      cin>>u;
+      cout<<"\n\nDFS TRAVERSAL :\n";
+      s.push(u);
+      
+         while(!s.isEmpty())
+         {
+            v=s.pop();
+            if(visited[v]==0)
+            {
+               visited[v]=1;
+               cout<<"\t"<<v;
+            }
+            for(int j=n-1;j>=0;j--)
+            {
+               if(mat[v][j]==1 && visited[j]==0)
+               {
+                  s.push(j); 
+               }
+            }
+         }
+      
+      cout<<"\n";
+   return 0;
+}   
+
+
+
+
+
+
+/*How many vertices do you want : 4
+Enter edge in pair : 0 1
+Do you want to enter next pair (enter 1): 1
+Enter edge in pair : 0 2
+Do you want to enter next pair (enter 1): 1
+Enter edge in pair : 2 0
+Do you want to enter next pair (enter 1): 1
+Enter edge in pair : 2 3
+Do you want to enter next pair (enter 1): 1
+Enter edge in pair : 1 2
+Do you want to enter next pair (enter 1): 1
+Enter edge in pair : 3 3
+Do you want to enter next pair (enter 1): 0 
+Matrix is : 
+	0	1	1	0
+	0	0	1	0
+	1	0	0	1
+	0	0	0	1
+
+Enter the starting vertex : 2
+DFS TRAVERSAL :
+	2	0	1	3  */

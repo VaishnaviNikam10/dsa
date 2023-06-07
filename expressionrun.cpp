@@ -130,3 +130,6 @@ int main()
     t.del(t.top);
     // t.display(t.top);
 }
+
+/* prefix expression - +*AB/CD
+    POSTORDER -AB*CD/+ */

@@ -111,7 +111,7 @@ int main()
     int ch=0;
     do
     {
-        cout<<"\n1]Add Patent\n2]Remove Patent\n3]Display4]Exit"<<endl;
+        cout<<"\n1]Add Patent\n2]Remove Patent\n3]Display\n4]Exit"<<endl;
         cout<<"Enter your choice: ";
         cin>>ch;
         switch (ch)
@@ -142,3 +142,48 @@ int main()
     
     return 0;
 }
+
+/* 1]Add Patent
+2]Remove Patent
+3]Display
+4]Exit
+Enter your choice: 1
+Enter name: vv
+tGeneral=0	Non-serious=1	Serious=2
+Enter your choice: 2
+1]Add Patent
+2]Remove Patent
+3]Display
+4]Exit
+Enter your choice: 1
+Enter name: ss
+tGeneral=0	Non-serious=1	Serious=2
+Enter your choice: 0
+1]Add Patent
+2]Remove Patent
+3]Display
+4]Exit
+Enter your choice: 3
+Queu is:
+	PRIORITY  NAME
+	2	  vv
+	0	  ss
+
+1]Add Patent
+2]Remove Patent
+3]Display
+4]Exit
+Enter your choice: 1
+Enter name: mm
+tGeneral=0	Non-serious=1	Serious=2
+Enter your choice: 1
+1]Add Patent
+2]Remove Patent
+3]Display
+4]Exit
+Enter your choice: 3
+Queu is:
+	PRIORITY  NAME
+	2	  vv
+	1	  mm
+	0	  ss*/

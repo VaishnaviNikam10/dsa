@@ -27,7 +27,7 @@ void dict::create()
     do
     {
         temp=new node;
-        cout<<"\n Enter the kay point:"<<endl;
+        cout<<"\n Enter the key point:"<<endl;
         cin>>temp->k;
         cout<<"\n Enter the meaning"<<endl;
         cin>>temp->m;
@@ -68,7 +68,7 @@ void dict::display(node *root)
     {
         display(root->left);
         cout<<"\n Key word: "<<root->k;
-        cout<<"\t Meaning: "<<root->m;
+        cout<<"\t Meaning:  "<<root->m;
         display(root->right);
     }
 }
@@ -168,7 +168,7 @@ int main()
     int ch;
     do
     {
-        cout<<"\n1]create\n2]display\n3]search\n4update\n5]delete\n6]exit"<<endl;
+        cout<<"\n1]create\n2]display\n3]search\n4]update\n5]delete\n6]exit"<<endl;
         cout<<"enter your choice: ";
         cin>>ch;
         switch(ch)
@@ -237,7 +237,7 @@ int main()
                     dt.root=dt.delet(dt.root,k);
                 }
             }
-
+            
         }
 
     } while (ch<=5);
